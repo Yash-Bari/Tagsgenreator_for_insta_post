@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Recognition and Tagging</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://source.unsplash.com/1600x900/?stars");
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fffefe;
+        }
+        .dark-mode {
+            background-color: #292b2c;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+            color: #42a2eb;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        li {
+            background-color: rgb(13, 13, 13);
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            padding: 10px;
+            width: 250px;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .tag-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .tag-item {
+            background-color: #1b0d29;
+            color: #fff;
+            border-radius: 20px;
+            padding: 5px 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Recognition and Tagging</h1>
+    <form method="GET" action="{{ url_for('index') }}">
+        <label for="search_tags">Search by Tags:</label>
+        <input type="text" name="tags" id="search_tags" placeholder="Enter tags...">
+        <button type="submit">Search</button>
+    </form>
+    <a href="{{ url_for('upload') }}">Upload New Image</a>
+    <ul>
+        {% for image in images %}
+        <li>
+            <img src="{{ image.filepath }}" alt="{{ image.filename }}" width="200">
+            <ul class="tag-list">
+                {% for tag in image.tags %}
+                <li class="tag-item">{{ tag[0] }} <span class="confidence">(Confidence: {{ tag[1] }})</span></li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>

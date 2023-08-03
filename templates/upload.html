@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://source.unsplash.com/1600x900/?stars");
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #fffefe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        input[type="file"] {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        input[type="file"]:hover {
+            border-color: #007bff;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0d1823;
+        }
+        .view-button {
+            display: block;
+            background-color: #081c3d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .view-button:hover {
+            background-color: #0c349b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="image">Select an image:</label>
+        <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .gif" required>
+        <br>
+        <input type="submit" value="Upload">
+    </form>
+    <a href="{{ url_for('index') }}" class="view-button">View Uploaded Images</a>
+</body>
+</html>
