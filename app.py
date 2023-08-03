@@ -12,8 +12,8 @@ app.config['ALLOWED_EXTENSIONS'] = {'jpg', 'jpeg', 'png', 'gif'}
 
 db = mysql.connector.connect(
     host="localhost",
-    user="yash",        # Replace with your MySQL username
-    password="9834148536",        # Replace with your MySQL password
+    user="",        # Replace with your MySQL username
+    password="",        # Replace with your MySQL password
     database="image_db"
 )
 
@@ -87,7 +87,7 @@ def upload():
             image_id = cursor.lastrowid
             for tag_info in tags:
                 tag_name = tag_info[1]
-                confidence = float(tag_info[2])  # Convert to Python float
+                confidence = float(tag_info[2])  
                 cursor.execute("INSERT INTO tags (image_id, tag_name, confidence) VALUES (%s, %s, %s)",(image_id, tag_name, confidence))
             db.commit()
             
