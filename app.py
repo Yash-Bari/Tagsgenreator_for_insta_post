@@ -12,8 +12,8 @@ app.config['ALLOWED_EXTENSIONS'] = {'jpg', 'jpeg', 'png', 'gif'}
 
 db = mysql.connector.connect(
     host="localhost",
-    user="yash",        # Replace with your MySQL username
-    password="9834148536",        # Replace with your MySQL password
+    user="",        # Replace with your MySQL username
+    password="",        # Replace with your MySQL password
     database="image_db"
 )
 
